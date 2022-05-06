@@ -16,8 +16,10 @@ button {
 }
 
 img {
-    max-height:250pxpx;
+    max-height:250px;
+    max-width:250px;
     object-fit:cover;
+    border-radius:14px;
     
 }
 
