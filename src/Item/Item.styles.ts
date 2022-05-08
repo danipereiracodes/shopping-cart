@@ -11,6 +11,7 @@ min-height:700px;
 
 
 
+
 button {
     font-size:1.5em;
 }
@@ -26,6 +27,7 @@ div {
     font-family:arial;
     padding:1rem;
     height:100%;
+    
     
 }
 `;
