@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Item from "./Item/Item";
 //Components
@@ -8,6 +8,7 @@ import Drawer from "@mui/material/Drawer";
 import Icon from "@mui/material/Icon";
 import { AddShoppingCart } from "@mui/icons-material";
 import { Badge } from "@mui/material";
+import Cart from "./Cart";
 
 //Styles
 import { Wrapper } from "./Item/Item.styles";
@@ -36,8 +37,33 @@ const App = () => {
 		getProducts
 	);
 	const getTotalItems = (items:cartItemType[]) => items.reduce((acc: number , item)=> acc + item.amount, 0);
-	const handleAddToCart = (clickedItem: cartItemType) => null;
-	const handleRemoveFromCart = null;
+	const handleAddToCart = (clickedItem: cartItemType) => {
+		setCartItems(prev => {
+			//is item already in the cart?
+			const isItem = prev.find((item)=> item.id === clickedItem.id);
+			if (isItem) {
+				return prev.map((item) => (
+					item.id === clickedItem.id
+					? {...item, amount:item.amount + 1}
+					: item 
+				))
+			}
+			//Firs time item is added
+			return [...prev, {...clickedItem, amount: 1}]
+			
+		})
+		
+		
+		setIsCartOpen(true);
+
+	};
+
+	useEffect(()=> {
+		window.scrollTo(0, 0);
+		
+	},[isCartOpen])
+
+	const handleRemoveFromCart = () =>  null;
 
 	if (isLoading) return <LinearProgress />;
 	if (error) return <p>Something went wrong</p>;
@@ -46,7 +72,7 @@ const App = () => {
 		
 		<Wrapper>
 			<Drawer anchor='right' open={isCartOpen} onClose={()=> setIsCartOpen(false)}>
-			
+			<Cart cartItems={cartItems} handleAddToCart={handleAddToCart} handleRemoveFromCart={handleRemoveFromCart}/>
 			</Drawer>
 			< StyledButton onClick={()=>setIsCartOpen(true)}>
 			<Badge badgeContent={getTotalItems(cartItems)} color='error' >
