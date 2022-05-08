@@ -6,8 +6,7 @@ font-family:arial, helvetica, sans-serif;
 width:450px;
 padding:20px;
 
-transition-timing-function: ease-in;
-transition-delay:5s;
+
 
 
 `

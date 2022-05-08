@@ -36,6 +36,9 @@ const App = () => {
 		"products",
 		getProducts
 	);
+	
+	
+
 	const getTotalItems = (items:cartItemType[]) => items.reduce((acc: number , item)=> acc + item.amount, 0);
 	const handleAddToCart = (clickedItem: cartItemType) => {
 		setCartItems(prev => {
@@ -63,7 +66,16 @@ const App = () => {
 		
 	},[isCartOpen])
 
-	const handleRemoveFromCart = () =>  null;
+	const handleRemoveFromCart = (id: number) =>  {
+		setCartItems(prev => prev.reduce((acc,item) => {
+			 if (item.id === id) {
+				 if (item.amount === 1) return acc;
+				 return [...acc,{...item, amount:item.amount - 1}]
+			 } else {
+				 return [...acc, item];
+			 }
+		}, [] as cartItemType[]))
+	};
 
 	if (isLoading) return <LinearProgress />;
 	if (error) return <p>Something went wrong</p>;
@@ -72,7 +84,7 @@ const App = () => {
 		
 		<Wrapper>
 			<Drawer anchor='right' open={isCartOpen} onClose={()=> setIsCartOpen(false)}>
-			<Cart cartItems={cartItems} handleAddToCart={handleAddToCart} handleRemoveFromCart={handleRemoveFromCart}/>
+			<Cart  cartItems={cartItems} handleAddToCart={handleAddToCart} handleRemoveFromCart={handleRemoveFromCart} />
 			</Drawer>
 			< StyledButton onClick={()=>setIsCartOpen(true)}>
 			<Badge badgeContent={getTotalItems(cartItems)} color='error' >
