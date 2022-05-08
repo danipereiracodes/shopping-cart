@@ -5,18 +5,20 @@ display:flex;
 justify-content:space-between;
 flex-direction:column;
 width:100%;
-boder:1px solid lightblue;
+border:1px solid lightblue;
 border-radius:20px;
+min-height:700px;
+
 
 
 button {
-    border-radius:0 0 20px 20px;
-    
+    font-size:1.5em;
 }
 
 img {
-    max-height:250pxpx;
+    max-height:300px;
     object-fit:cover;
+    border-radius:20px 20px 0 0;
     
 }
 
@@ -24,5 +26,6 @@ div {
     font-family:arial;
     padding:1rem;
     height:100%;
+    
 }
 `;

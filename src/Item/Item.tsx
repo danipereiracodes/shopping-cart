@@ -1,4 +1,4 @@
-import { Wrapper } from "../App.styles";
+import { Wrapper } from "./Item.styles";
 import { Button } from "@mui/material";
 
 import { cartItemType } from "../App";
@@ -17,7 +17,8 @@ const Item: React.FC<Props> = ({item, handleAddToCart}) => {
         <p>{item.description}</p>
         <h3>{item.price}€</h3>
         </div>
-        <button onClick={()=>handleAddToCart(item)}>Add to cart</button>
+        
+        <Button onClick={()=> handleAddToCart(item)}>Add to cart</Button>
     </Wrapper>
     
 )
