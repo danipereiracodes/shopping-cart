@@ -1,31 +1,17 @@
 import styled from "styled-components";
+import { IconButton } from "@mui/material";
 
 export const Wrapper = styled.div`
 
-display:flex;
-justify-content:space-between;
-flex-direction:column;
-width:100%;
-boder:1px solid lightblue;
-border-radius:20px;
+margin:40px;
 
 
-button {
-    border-radius:0 0 20px 20px;
-    
-}
+`
 
-img {
-    max-height:250px;
-    max-width:250px;
-    object-fit:cover;
-    border-radius:14px;
-    
-}
+export const StyledButton = styled(IconButton)`
 
-div {
-    font-family:arial;
-    padding:1rem;
-    height:100%;
-}
+position:fix;
+z-index:100;
+right:20px;
+top:20px;
 `
